@@ -1,0 +1,12 @@
+{
+  "target_groups": [
+    {
+      "name": "AI TESt",
+      "hwnd": 28847092,
+      "enabled": true
+    }
+  ],
+  "wechat_process_name": "Weixin.exe",
+  "auto_find_windows": true,
+  "backup_send_enabled": false
+}
