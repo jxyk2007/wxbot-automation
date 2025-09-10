@@ -312,9 +312,7 @@ python auto_daily_report.py debug
 
 如有问题或建议，欢迎通过以下方式联系：
 
-- 📧 邮箱: your-email@example.com
 - 💬 微信: your-wechat-id
-- 🐙 GitHub: [你的用户名](https://github.com/你的用户名)
 
 ---
 
