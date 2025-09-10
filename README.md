@@ -318,4 +318,4 @@ python auto_daily_report.py debug
 
 ---
 
-⭐ 如果这个项目对你有帮助，请给个 Star 支持一下！
+⭐ 如果这个项目对你有帮助，请给个 Star 支持一下！"# wxbot-automation" 
