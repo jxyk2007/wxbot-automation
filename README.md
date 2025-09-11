@@ -440,4 +440,6 @@ python auto_daily_report.py debug
 
 ![alt text](image.png)
 
+![alt text](image-1.png)
+
 ⭐ 如果这个项目对你有帮助，请给个 Star 支持一下！ 
