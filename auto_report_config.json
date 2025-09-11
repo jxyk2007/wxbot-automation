@@ -1,12 +1,65 @@
 {
-  "target_groups": [
-    {
-      "name": "AI TESt",
-      "hwnd": 28847092,
-      "enabled": true
+  "version": "2.0",
+  "default_sender": "wechat",
+  "sender_priority": ["wechat", "wxwork"],
+  "fallback_enabled": true,
+  
+  "senders": {
+    "wechat": {
+      "type": "wechat",
+      "enabled": true,
+      "process_names": ["WeChat.exe", "Weixin.exe", "wechat.exe"],
+      "default_group": "存储统计报告群",
+      "auto_find_windows": true,
+      "target_groups": [
+        {
+          "name": "AI TESt",
+          "hwnd": 668336,
+          "enabled": true
+        },
+        {
+          "name": "存储统计报告群",
+          "hwnd": null,
+          "enabled": true
+        }
+      ]
+    },
+    "wxwork": {
+      "type": "wxwork",
+      "enabled": true,
+      "process_names": ["WXWork.exe", "wxwork.exe"],
+      "default_group": "蓝光统计",
+      "auto_find_windows": true,
+      "target_groups": [
+        {
+          "name": "蓝光统计",
+          "hwnd": null,
+          "enabled": true
+        },
+        {
+          "name": "蓝光统计",
+          "hwnd": null,
+          "enabled": false
+        }
+      ]
     }
-  ],
-  "wechat_process_name": "Weixin.exe",
-  "auto_find_windows": true,
-  "backup_send_enabled": false
+  },
+  
+  "message_settings": {
+    "add_timestamp": true,
+    "add_sender_info": true,
+    "format_style": "emoji"
+  },
+  
+  "legacy_compatibility": {
+    "wechat_process_name": "Weixin.exe",
+    "backup_send_enabled": false,
+    "target_groups": [
+      {
+        "name": "AI TESt",
+        "hwnd": 668336,
+        "enabled": true
+      }
+    ]
+  }
 }
