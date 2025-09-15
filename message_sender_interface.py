@@ -128,26 +128,24 @@ class MessageSenderInterface(ABC):
     
     def format_report_message(self, content: str) -> str:
         """
-        格式化报告消息（通用格式）
-        
+        格式化报告消息（自然格式）
+
         Args:
             content: 原始报告内容
-            
+
         Returns:
             str: 格式化后的消息
         """
         from datetime import datetime
-        
-        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        
-        formatted_content = f"""📊 存储使用量统计报告
-🕐 发送时间: {timestamp}
+
+        timestamp = datetime.now().strftime('%m月%d日 %H:%M')
+
+        formatted_content = f"""今日存储统计情况({timestamp}):
 
 {content}
 
-🤖 此消息由自动化系统发送
-💻 发送器: {self.sender_type}"""
-        
+各单位请及时关注存储使用情况。"""
+
         return formatted_content
 
 
