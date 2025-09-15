@@ -18,7 +18,11 @@ from typing import Dict, List, Optional, Any
 # 导入新的发送器接口
 from message_sender_interface import MessageSenderInterface, MessageSenderFactory
 from wechat_sender_v3 import WeChatSenderV3
-from wxwork_sender import WXWorkSender
+from wxwork_adapter import WXWorkSenderAdapter
+
+# 注册发送器到工厂
+MessageSenderFactory.register_sender("wechat", WeChatSenderV3)
+MessageSenderFactory.register_sender("wxwork", WXWorkSenderAdapter)
 
 # Windows控制台编码修复
 if sys.platform == 'win32':
@@ -239,10 +243,15 @@ class AutoReportSystemV2:
         try:
             logger.info("🔄 开始执行存储统计...")
             
-            # 执行存储统计脚本
+            # 执行存储统计脚本（隐藏窗口）
+            startupinfo = subprocess.STARTUPINFO()
+            startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+            startupinfo.wShowWindow = subprocess.SW_HIDE
+
             result = subprocess.run([
                 sys.executable, 'storage_system.py', 'daily'
-            ], capture_output=True, text=True, encoding='gbk', errors='replace')
+            ], capture_output=True, text=True, encoding='gbk', errors='replace',
+               startupinfo=startupinfo)
             
             if result.returncode == 0:
                 logger.info("✅ 存储统计执行成功")
