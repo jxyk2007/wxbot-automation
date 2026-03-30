@@ -50,7 +50,42 @@ wxbot/
 ```bash
 pip install pyautogui pyperclip pywin32 psutil
 ```
+Windows 下的微信自动化工具集，目标是把“找群 -> 校验 -> 输入 -> 发送”这条链路做得更稳，而不是更莽。
 
+当前项目包含两条主要路线：
+
+- `wechat_sender_v4.py`
+  基于窗口相对坐标、PaddleOCR、可选 VLM 复核的高稳发送链路。
+- `wechat_visual_tuner.py`
+  用于可视化调参，直接预览搜索框、搜索结果、输入框、发送按钮的命中位置，调完即生效。
+
+> 免责声明：本项目仅用于学习、测试和个人技术研究。请遵守微信相关平台规则，不要用于骚扰、滥发或其他违规用途。
+
+## Features
+
+- 支持个人微信桌面端自动化发送
+- 通过窗口相对区域而不是硬编码绝对坐标，适配窗口尺寸变化
+- 使用 PaddleOCR 识别搜索框、搜索结果、聊天标题
+- 聊天标题发送前复核，尽量避免发错群
+- 可选接入本地 LM Studio 视觉模型做二次确认
+- 提供 `wechat_visual_tuner.py` 可视化调参工具，所见即所得
+- 保留 v3 等旧方案，便于回退和对比
+
+## Recommended Workflow
+
+推荐优先使用 v4 方案：
+
+1. 打开微信 PC 版，并保持已经登录
+2. 首次运行 `wechat_sender_v4.py calibrate` 完成标定
+3. 如需微调命中区域，打开 `wechat_visual_tuner.py`
+4. 确认搜索、结果点击、输入框、发送按钮都对准后保存
+5. 使用 `wechat_sender_v4.py send <群名> <消息>` 执行发送
+
+这套流程的核心思路是：
+
+- 先看见，再点击
+- 先校验，再发送
+- 宁可失败，也不乱发
 ### 基本使用
 
 #### 🆕 双微信自动化系统 (推荐)
@@ -484,8 +519,7 @@ python auto_daily_report.py debug
 
 如有问题或建议，欢迎通过以下方式联系：
 
-- 📧 邮箱: 364345866@qq.com
-- 💬 微信: 364345866
+
 - 🐙 GitHub: [jxyk2007](https://github.com/jxyk2007)
 
 ---
